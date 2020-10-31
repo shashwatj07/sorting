@@ -1,12 +1,15 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import sort.*;
 
 /**
  * @author Dipyaman Saha (https://github.com/dipyamansaha) - HEAP SORT ALGORITHM -
  *     https://en.wikipedia.org/wiki/Heapsort
  */
-public class HeapSortAlgo {
-  static void HeapSort(int[] Arr) {
+public class HeapSort {
+  static void heapSort(int[] Arr) {
     int n = Arr.length;
 
     BuildMaxHeap(Arr);
@@ -46,24 +49,18 @@ public class HeapSortAlgo {
     for (int i = (n / 2 - 1); i >= 0; i--) MaxHeapify(Arr, n, i);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     System.out.println("HEAP SORT ALGORITHM\n");
-
-    Scanner sc = new Scanner(System.in);
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     System.out.print("How many elements do you wanna insert? ");
-    int n = sc.nextInt();
+    int n = Integer.parseInt(br.readLine());
 
-    int[] Arr = new int[n];
+    int[] Arr = Sort.getInputArray(n);
 
-    System.out.println("Enter the elements: ");
-    for (int i = 0; i < n; i++) {
-      Arr[i] = sc.nextInt();
-    }
-
-    System.out.println("The entered array: " + Arrays.toString(Arr));
-
-    HeapSort(Arr);
-    System.out.println("The sorted array: " + Arrays.toString(Arr));
+    heapSort(Arr);
+    System.out.print("The sorted array: ");
+    Sort.printArray(Arr);
   }
 }
